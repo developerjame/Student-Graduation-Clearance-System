@@ -86,53 +86,135 @@ table {
                                     <th>Department</th>
                                     <th>Officer Name</th>
                                     <th>Status</th>
+                                    <th>Remaks</th>
+                                    <th>Signature</th>
+                                    <th>Date</th>
                                 </tr>
                                 <tr>
                                     <td>1.</td>
-                                    <td>Hostel</td>
-                                    <td>John</td>
+                                    <td>Admission Office</td>
+                                    <td>Milka</td>
                                     <td style="color: lightgreen;">cleared</td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>Library</td>
-                                    <td>James1</td>
-                                    <td style="color: lightgreen;">cleared</td>
-                                </tr>
+                                    <td><?php echo $rowaccess['remarks_admission'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_admission'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_admission'];?></td>
+                                </tr> 
                                 <tr>
                                     <td>3.</td>
-                                    <td>Games</td>
-                                    <td>Haron</td>
+                                    <td>H.o.D-<?php echo $rowaccess['dept'];?></td>
+                                    
+                                    <?php if (($rowaccess['dept'])==(("Mathematics")))  { ?>
+                                    <td>Joseph</td>
                                     <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_mathematics'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_mathematics'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_mathematics'];?></td>
+                                    <?php } ?>
+                                    <?php if (($rowaccess['dept'])==(("Computer Science")))  { ?>
+                                    <td>Kariuki</td>
+                                    <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_compscience'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_compscience'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_compscience'];?></td>
+                                    <?php } ?>
+                                    <?php if (($rowaccess['dept'])==(("Business Administration")))  { ?>
+                                    <td>Lilian</td>
+                                    <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_ba'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_ba'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_ba'];?></td>
+                                    <?php } ?>
+                                    <?php if (($rowaccess['dept'])==(("Education")))  { ?>
+                                    <td>Jane</td>
+                                    <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_education'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_education'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_education'];?></td>
+                                    <?php } ?>
+                                    <?php if (($rowaccess['dept'])==(("Business Information Technology")))  { ?>
+                                    <td>Lucy</td>
+                                    <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_bit'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_bit'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_bit'];?></td>
+                                    <?php } ?>
+                                </tr>                                                                                           
+                                <tr>
+                                    <td>3.</td>
+                                    <td>Computer Laboratory</td>
+                                    <td>Kimani</td>
+                                    <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_computerlab'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_computerlab'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_computerlab'];?></td>
                                 </tr>
                                 <tr>
                                     <td>4.</td>
-                                    <td>All H.O.D.s</td>
-                                    <td>Hellen</td>
+                                    <td>Games</td>
+                                    <td>Asher</td>
                                     <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_games'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_games'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_games'];?></td>
                                 </tr>
                                 <tr>
                                     <td>5.</td>
-                                    <td>Examination Office</td>
+                                    <td>KWUSD (Dean of Students)</td>
                                     <td>Alex</td>
                                     <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_dean'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_dean'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_dean'];?></td>
                                 </tr>
                                 <tr>
                                     <td>6.</td>
-                                    <td>Admission Office</td>
-                                    <td>Enoc</td>
+                                    <td>Hostel</td>
+                                    <td>Mary</td>
                                     <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_hostel'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_hostel'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_hostel'];?></td>
                                 </tr>
                                 <tr>
                                     <td>7.</td>
-                                    <td>Computer Laboratory</td>
-                                    <td>Lilian</td>
+                                    <td>Examination office</td>
+                                    <td>Ann</td>
                                     <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_examination'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_examination'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_examination'];?></td>
+                                </tr>
+                                <tr>
+                                    <td>8.</td>
+                                    <td>Library</td>
+                                    <td>James</td>
+                                    <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_library'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_library'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_library'];?></td>
+                                </tr>
+                                <tr>
+                                    <td>9.</td>
+                                    <td>Registrar Acardemics</td>
+                                    <td>Derick</td>
+                                    <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_registrar'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_registrar'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_registrar'];?></td>
+                                </tr>
+                                <tr>
+                                    <td>10.</td>
+                                    <td>Finance</td>
+                                    <td>Allan</td>
+                                    <td style="color: lightgreen;">cleared</td>
+                                    <td><?php echo $rowaccess['remarks_finance'];?></td>
+                                    <td><img src="Officers/<?php echo $rowaccess['signature_finance'];?>"  width="91" height="30" border="2"/></td>
+                                    <td><?php echo $rowaccess['date_finance'];?></td>
                                 </tr>
                             </table>
                             <p align="justify">Your Details remains:</p>
                             <p align="justify"><strong>FULLNAME:</strong> <?php echo $rowaccess['fullname']; ?></p>
-                            <p align="justify"><strong>Reg NUMBER:</strong> <?php echo $rowaccess['matric_no']; ?></p>
+                            <p align="justify"><strong>REG NUMBER:</strong> <?php echo $rowaccess['matric_no']; ?></p>
                             <p align="justify"><strong>FACULTY:</strong> <?php echo $rowaccess['faculty']; ?></p>
                             <p align="justify"><strong>DEPARTMENT:</strong> <?php echo $rowaccess['dept']; ?></p>
                             <p align="justify">&nbsp;</p>

@@ -224,7 +224,7 @@ VALUES ('$username','$password','$designation','$fullname','$email','Active','up
                     <label for="exampleInputPassword1">Designation</label>
                     <select name="cmddesignation" id="select" class="form-control" required="">
     <option value="Select Designation">Select Designation</option>
-   <option value="Librarian">Librarian</option>
+   <option value="Library">Library</option>
    <option value="Hostel">Hostel</option>
    <option value="Games">Games</option>
    <option value="H.O.D.s">H.O.D</option>
@@ -232,6 +232,13 @@ VALUES ('$username','$password','$designation','$fullname','$email','Active','up
    <option value="Examination_office">Examination Officer</option>
    <option value="Admission_office">Admission Officer</option>
    <option value="Computer_laboratory">Computer Laboratory</option>
+   <option value="Registrar_Acardemics">Registrar Acardemics</option>
+   <option value="Finance">Finance</option>
+   <option value="H.O.D-Mathematics">H.O.D-Mathematics</option>
+   <option value="H.O.D-Computer_Science">H.O.D-Computer Science</option>
+   <option value="H.O.D-Business_Administration">H.O.D-Business Administration</option>
+   <option value="H.O.D-Education">H.O.D-Education</option>
+   <option value="H.O.D-Business_Information_Technology">H.O.D-BIT</option>
 
    </select> 
                      </div>

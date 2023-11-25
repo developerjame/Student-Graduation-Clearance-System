@@ -99,17 +99,18 @@ $sessions = $stmt->fetchAll();
                   <select name="faculty" id="select" class="form-control" required>
                   <option value="">Select faculty</option>
                   <option value="Science">Science</option>
-                  <option value="Engineering">Engineering</option>
+                  <option value="Education">Education</option>
                   <option value="Business">Business</option>
                   </select>  
                 </div>
                 <div class="form-group">
                     <select name="dept" id="select" class="form-control">
                     <option value="Select Department">Select Department</option>
+                    <option value="Mathematics">Mathematics</option>
                     <option value="Computer Science">Computer Science</option>
-                    <option value="Electrical Engineering">Electrical Engineering</option>
-                    <option value="Business Management">Business Management</option>
-                    <option value="Information Technology">Information Technology</option>
+                    <option value="Education">Education</option>
+                    <option value="Business Administration">Business Administration</option>
+                    <option value="Business Information Technology">Business Information Technology</option>
                     </select>
                 </div>
                 <div class="form-group">

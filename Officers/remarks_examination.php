@@ -2,75 +2,61 @@
  session_start();
  error_reporting(0);
  include('../connect.php');
- include('../connect2.php');
+ $ID = $_GET['ID'];
 
 $username=$_SESSION['admin-username'];
-$sql = "select * from admin where username='$username'"; 
+$sql = "select * from officers where username='$username'"; 
 $result = $conn->query($sql);
 $row1= mysqli_fetch_array($result);
 
 date_default_timezone_set('Africa/Lagos');
 $current_date = date('Y-m-d H:i:s');
 
+// Database connection details
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "student_clearance";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $remarks = $_POST["remarks"];
+    $date_remark = $_POST["date_remark"];
+
+    // Handle image upload
+    //$target_dir = "uploads/";
+    //$target_file = $target_dir . basename($_FILES["signaturepic"]["name"]);
+    //move_uploaded_file($_FILES["signaturepic"]["tmp_name"], $target_file);
+
+    $folderPath = "uploads/";
+    $image_parts = explode(";base64,", $_POST['signed']);
+    $image_type_aux = explode("image/", $image_parts[0]);
+    $image_type = $image_type_aux[1];
+    $image_base64 = base64_decode($image_parts[1]);
+    $file = $folderPath. uniqid() . '.'.$image_type;
+    file_put_contents($file, $image_base64);
+
+    // Insert data into the database
+    $sql = " update students set remarks_examination='$remarks', signature_examination='$file', date_examination='$date_remark' where ID='$ID'";
+   
+    if ($conn->query($sql) === TRUE) {
+        echo "Remarks added successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Close the database connection
+$conn->close();
  
-if(isset($_POST["btnregister"]))
-{
 
-
-  $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
-  $password_stud = substr(str_shuffle($permitted_chars), 0, 6);
-
-$fullname = mysqli_real_escape_string($conn,$_POST['txtfullname']);
-$matric_no = mysqli_real_escape_string($conn,$_POST['txtmatric_no']);
-$phone = mysqli_real_escape_string($conn,$_POST['txtphone']);
-$session = mysqli_real_escape_string($conn,$_POST['cmdsession']);
-$faculty = mysqli_real_escape_string($conn,$_POST['cmdfaculty']);
-$dept = mysqli_real_escape_string($conn,$_POST['cmddept']);
-$phone = mysqli_real_escape_string($conn,$_POST['txtphone']);
-
-
- $sql = "SELECT * FROM students where matric_no='$matric_no'";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-$_SESSION['error'] =' Matric No already Exist ';
-
-}else{
-//save users details
-$query = "INSERT into `students` (fullname,matric_no,password,session,faculty,dept,phone,photo)
-VALUES ('$fullname','$matric_no','$password_stud','$session','$faculty','$dept','$phone','uploads/avatar_nick.png')";
-
-
-    $result = mysqli_query($conn,$query);
-      if($result){
-	  $_SESSION['matric_no']=$matric_no;
-
-//SEnd password Via SMS
-$username='rexrolex0@gmail.com';//Note: urlencodemust be added forusernameand 
-$password='admin123';// passwordas encryption code for security purpose.
-
-$sender='AUTHUR-JAVI';
-$message  = 'Dear '.$fullname.', Your password for online clearance system is :'.$password_stud.' ';
-$api_url  = 'https://portal.nigeriabulksms.com/api/';
-
-//Create the message data
-$data = array('username'=>$username, 'password'=>$password, 'sender'=>$sender, 'message'=>$message, 'mobiles'=>$phone);
-//URL encode the message data
-$data = http_build_query($data);
-//Send the message
-$request = $api_url.'?'.$data;
-$result  = file_get_contents($request);
-$result  = json_decode($result);
-
-
-$_SESSION['success'] ='Student Registration was successful';
-
-}else{
-$_SESSION['error'] ='Problem registering student';
-
-}
-}
-}
 
 ?>
 <!DOCTYPE html>
@@ -78,7 +64,7 @@ $_SESSION['error'] ='Problem registering student';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Register Student|Dashboard</title>
+  <title>Remarks</title>
   <link rel="icon" type="image/png" sizes="16x16" href="images/logo2.png">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -100,6 +86,22 @@ $_SESSION['error'] ='Problem registering student';
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="jquery.signature/js/jquery.signature.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery.signature/css/jquery.signature.css">
+
+    <style>
+        .kbw-signature {width: 400px; height: 200px;}
+        #sig canvas{
+            width: 100% !important;
+            height: auto;
+        }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -139,7 +141,7 @@ $_SESSION['error'] ='Problem registering student';
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index.php" class="brand-link">
-      <img src="../images/logo1.png" alt=" Logo"  width="200" height="111" class="" style="opacity: .8">
+      <img src="../images/logo.png" alt=" Logo"  width="200" height="111" class="" style="opacity: .8">
 	  <span class="brand-text font-weight-light"></span>
     </a>
 
@@ -192,12 +194,12 @@ $_SESSION['error'] ='Problem registering student';
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-          <h1 class="m-0 text-dark"># Admin</h1>
+            <h1 class="m-0 text-dark">&nbsp;</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Register Student</li>
+              <li class="breadcrumb-item active">Give Remarks </li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -214,69 +216,43 @@ $_SESSION['error'] ='Problem registering student';
 		 <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Register Student </h3>
+                <h3 class="card-title">Give Remarks </h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-               <form id="form" action="" method="post" class="">
+               <form id="form" action="" method="POST" class="">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Fullname </label>
-                    <input type="text" class="form-control" name="txtfullname" id="exampleInputEmail1" size="77" value="<?php if (isset($_POST['txtfullname']))?><?php echo $_POST['txtfullname']; ?>" placeholder="Enter Fullname">
+                    <label for="exampleInputEmail1">Remarks </label>
+                    <p style="color: red;"><input type="text" class="form-control" name="remarks" id="exampleInputEmail1" size="77" value="" placeholder="Give Remarks">
                   </div>
+                  <div class="form-group">
+                      <label for="">Signature</label>
+                      <br/>
+                      <div id="sig"></div>
+                      <br/>
+                      <button id="clear">Clear Signature</button>
+                      <textarea name="signed" id="signature64" cols="30" rows="10" style="display: none;" placeholder="Your Signature"></textarea>
+
+                  </div>
+                  <script type="text/javascript">
+                          var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
+                          $('#clear').click(function (e) {
+                              e.preventDefault();
+                              sig.signature('clear');
+                              $("#signature64").val('');
+                          });
+                  </script>
 				   <div class="form-group">
-                    <label for="exampleInputEmail1">Matric No. </label>
-                    <input type="text" class="form-control" name="txtmatric_no" id="exampleInputEmail1" size="77" value="<?php if (isset($_POST['txtmatric_no']))?><?php echo $_POST['txtmatric_no']; ?>" placeholder="Enter Matric No.">
+                    <label for="exampleInputEmail1">Date </label>
+                    <input type="date" class="form-control" name="date_remark" id="exampleInputEmail1" size="77" value="" placeholder="Date">
                   </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Phone No. </label>
-                    <input type="text" class="form-control" name="txtphone" id="exampleInputEmail1" size="77" value="<?php if (isset($_POST['txtphone']))?><?php echo $_POST['txtphone']; ?>" placeholder="Enter Phone">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Session</label>
-                    <?php
-//Our select statement. This will retrieve the data that we want.
-$sql = "SELECT * FROM tblsession";
-//Prepare the select statement.
-$stmt = $dbh->prepare($sql);
-//Execute the statement.
-$stmt->execute();
-//Retrieve the rows using fetchAll.
-$sessions = $stmt->fetchAll();
-?>
-      <select name="cmdsession" id="select" class="form-control" required="">
-    <?php foreach($sessions as $row_session): ?>
-        <option value="<?= $row_session['session']; ?>"><?= $row_session['session']; ?></option>
-    <?php endforeach; ?>
-</select>
                   
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Faculty</label>
-                    <select name="cmdfaculty" id="select" class="form-control" required="">
-    <option value="Select faculty">Select faculty</option>
-   <option value="Science">Science</option>
-   <option value="Education">Education</option>
-   <option value="Business">Business</option>
-   </select>  
-     </div>
-				  <div class="form-group">
-                    <label for="exampleInputPassword1">Department</label>
-                    <select name="cmddept" id="select" class="form-control" required="">
-    <option value="Select Department">Select Department</option>
-    <option value="Mathematics">Mathematics</option>
-   <option value="Computer Science">Computer Science</option>
-   <option value="Education">Education</option>
-   <option value="Business Administration">Business Administration</option>
-   <option value="Business Information Technology">Business Information Technology</option>
-   </select>  
-    </div>
-		   </div>
+                </div>
                 <!-- /.card-body -->
+
                 <div class="card-footer">
-                  <button type="submit" name="btnregister" class="btn btn-primary">Register Student</button>
+                  <button type="submit" name="btncreate" class="btn btn-primary">Submit</button>
                 </div>
               </form>
             </div>
@@ -295,7 +271,7 @@ $sessions = $stmt->fetchAll();
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <?php include('../footer.php');  ?>
+    <?php include('footer.php');  ?>
     <div class="float-right d-none d-sm-inline-block">
       
     </div>
@@ -385,5 +361,14 @@ $sessions = $stmt->fetchAll();
 Array.from(document.querySelectorAll('button[data-for]')).
 forEach(addButtonTrigger);
     </script>
+
+<script type="text/javascript">
+        var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
+        $('#clear').click(function (e) {
+            e.preventDefault();
+            sig.signature('clear');
+            $("#signature64").val('');
+        });
+    </script>    
 </body>
 </html>

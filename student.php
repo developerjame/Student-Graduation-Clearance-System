@@ -39,8 +39,15 @@ $games = $rowaccess['is_games_approved'];
 $library = $rowaccess['is_library_approved'];
 $admissionOffice = $rowaccess['is_admissionOffice_approved'];
 $examinationOffice = $rowaccess['is_examinationOffice_approved'];
-$hods = $rowaccess['is_hods_approved'];
 $computerLab = $rowaccess['is_computerLab_approved'];
+$dean_of_student = $rowaccess['is_dean_of_student_approved'];
+$registrar = $rowaccess['is_registrar_approved'];
+$finance = $rowaccess['is_finance_approved'];
+$mathematics = $rowaccess['is_mathematics_approved'];
+$computer_science = $rowaccess['is_computer_science_approved'];
+$business_administration = $rowaccess['is_business_administration_approved'];
+$education = $rowaccess['is_education_approved'];
+$bit = $rowaccess['is_bit_approved'];
 
 date_default_timezone_set('Africa/Lagos');
 $current_date = date('Y-m-d H:i:s');
@@ -202,20 +209,128 @@ $tot_fee=$row_fee['tot_fee'];
                           <div class="ibox-content">
                               <h3 class="no-margins">
 						  
-							  <?php if (($outstanding_fee)=="0" && ($games)=="1" &&($hostel)=="1" && ($computerLab)=="1" && ($examinationOffice)=="1" && ($admissionOffice)=="1" && ($hods)=="1" && ($library)=="1")  { ?>
-						<div align="center"><i class="fa fa-check-circle" style="font-size:28px;color:green"></i>
-						<?php echo "Cleared"; ?></div>
-							 <?php } else {?>
-						<div align="left"><i class="fa fa-times-circle" style="font-size:28px;color:orange"></i>
-<?php echo "Pending"; ?></div>
-	  <?php } ?> </h3>
+							  <?php if (($rowaccess['dept'])==(("Business Information Technology")))  { ?>
+                              <?php if (($outstanding_fee)=="0" && ($games)=="1" &&($hostel)=="1" && ($computerLab)=="1" && 
+                              ($examinationOffice)=="1" && ($admissionOffice)=="1" && ($library)=="1" && 
+                              ($dean_of_student)=="1" && ($registrar)=="1" && ($bit)=="1")  { ?>
+
+                                <div align="center"><i class="fa fa-check-circle" style="font-size:28px;color:green"></i>
+                                <?php echo "Cleared"; ?></div>
+                                    <?php } else {?>
+                                <div align="left"><i class="fa fa-times-circle" style="font-size:28px;color:orange"></i>
+                                <p><?php echo "Pending"; ?></p>
+                                </div>
+                              <?php } ?> 
+                              <?php } ?>
+
+                              <?php if (($rowaccess['dept'])==(("Mathematics")))  { ?>
+                              <?php if (($outstanding_fee)=="0" && ($games)=="1" &&($hostel)=="1" && ($computerLab)=="1" && 
+                              ($examinationOffice)=="1" && ($admissionOffice)=="1" && ($library)=="1" && 
+                              ($dean_of_student)=="1" && ($registrar)=="1" && ($mathematics)=="1")  { ?>
+
+                                <div align="center"><i class="fa fa-check-circle" style="font-size:28px;color:green"></i>
+                                <?php echo "Cleared"; ?></div>
+                                    <?php } else {?>
+                                <div align="left"><i class="fa fa-times-circle" style="font-size:28px;color:orange"></i>
+                                <p><?php echo "Pending"; ?></p>
+                                </div>
+                              <?php } ?> 
+                              <?php } ?>
+
+                              <?php if (($rowaccess['dept'])==(("Computer Science")))  { ?>
+                              <?php if (($outstanding_fee)=="0" && ($games)=="1" &&($hostel)=="1" && ($computerLab)=="1" && 
+                              ($examinationOffice)=="1" && ($admissionOffice)=="1" && ($library)=="1" && 
+                              ($dean_of_student)=="1" && ($registrar)=="1" && ($computer_science)=="1")  { ?>
+
+                                <div align="center"><i class="fa fa-check-circle" style="font-size:28px;color:green"></i>
+                                <?php echo "Cleared"; ?></div>
+                                    <?php } else {?>
+                                <div align="left"><i class="fa fa-times-circle" style="font-size:28px;color:orange"></i>
+                                <p><?php echo "Pending"; ?></p>
+                                </div>
+                              <?php } ?> 
+                              <?php } ?>
+
+                              <?php if (($rowaccess['dept'])==(("Business Administration")))  { ?>
+                              <?php if (($outstanding_fee)=="0" && ($games)=="1" &&($hostel)=="1" && ($computerLab)=="1" && 
+                              ($examinationOffice)=="1" && ($admissionOffice)=="1" && ($library)=="1" && 
+                              ($dean_of_student)=="1" && ($registrar)=="1" && ($business_administration)=="1")  { ?>
+
+                                <div align="center"><i class="fa fa-check-circle" style="font-size:28px;color:green"></i>
+                                <?php echo "Cleared"; ?></div>
+                                    <?php } else {?>
+                                <div align="left"><i class="fa fa-times-circle" style="font-size:28px;color:orange"></i>
+                                <p><?php echo "Pending"; ?></p>
+                                </div>
+                              <?php } ?> 
+                              <?php } ?>
+
+                              <?php if (($rowaccess['dept'])==(("Education")))  { ?>
+                              <?php if (($outstanding_fee)=="0" && ($games)=="1" &&($hostel)=="1" && ($computerLab)=="1" && 
+                              ($examinationOffice)=="1" && ($admissionOffice)=="1" && ($library)=="1" && 
+                              ($dean_of_student)=="1" && ($registrar)=="1" && ($education)=="1")  { ?>
+
+                                <div align="center"><i class="fa fa-check-circle" style="font-size:28px;color:green"></i>
+                                <?php echo "Cleared"; ?></div>
+                                    <?php } else {?>
+                                <div align="left"><i class="fa fa-times-circle" style="font-size:28px;color:orange"></i>
+                                <p><?php echo "Pending"; ?></p>
+                                </div>
+                              <?php } ?> 
+                              <?php } ?>
+
+                              </h3>
                                 <p class="no-margins">&nbsp;</p>
-								<?php if (($outstanding_fee)=="0" && ($games)=="1" &&($hostel)=="1" && ($computerLab)=="1" && ($examinationOffice)=="1" && ($admissionOffice)=="1" && ($hods)=="1" && ($library)=="1")  { ?>
+                                <?php if (($rowaccess['dept'])==(("Education")))  { ?>
+								<?php if (($outstanding_fee)=="0" && ($games)=="1" &&($hostel)=="1" && ($computerLab)=="1" && 
+                                ($examinationOffice)=="1" && ($admissionOffice)=="1" && ($library)=="1" && 
+                                ($dean_of_student)=="1" && ($registrar)=="1" && ($education)=="1")  { ?>
+
                                 <span class="style2"><small> <a href="letter.php" target="_blank">Print Clearance Letter</a></small></span>	
 								
-									
-								 <?php } ?>
-												  </div>
+								<?php } ?>	
+								<?php } ?>
+
+                                <?php if (($rowaccess['dept'])==(("Mathematics")))  { ?>
+								<?php if (($outstanding_fee)=="0" && ($games)=="1" &&($hostel)=="1" && ($computerLab)=="1" && 
+                                ($examinationOffice)=="1" && ($admissionOffice)=="1" && ($library)=="1" && 
+                                ($dean_of_student)=="1" && ($registrar)=="1" && ($mathematics)=="1")  { ?>
+
+                                <span class="style2"><small> <a href="letter.php" target="_blank">Print Clearance Letter</a></small></span>	
+								
+								<?php } ?>	
+								<?php } ?>
+
+                                <?php if (($rowaccess['dept'])==(("Computer Science")))  { ?>
+								<?php if (($outstanding_fee)=="0" && ($games)=="1" &&($hostel)=="1" && ($computerLab)=="1" && 
+                                ($examinationOffice)=="1" && ($admissionOffice)=="1" && ($library)=="1" && 
+                                ($dean_of_student)=="1" && ($registrar)=="1" && ($computer_science)=="1")  { ?>
+
+                                <span class="style2"><small> <a href="letter.php" target="_blank">Print Clearance Letter</a></small></span>	
+								
+								<?php } ?>	
+								<?php } ?>
+
+                                <?php if (($rowaccess['dept'])==(("Business Administration")))  { ?>
+								<?php if (($outstanding_fee)=="0" && ($games)=="1" &&($hostel)=="1" && ($computerLab)=="1" && 
+                                ($examinationOffice)=="1" && ($admissionOffice)=="1" && ($library)=="1" && 
+                                ($dean_of_student)=="1" && ($registrar)=="1" && ($business_administration)=="1")  { ?>
+
+                                <span class="style2"><small> <a href="letter.php" target="_blank">Print Clearance Letter</a></small></span>	
+								
+								<?php } ?>	
+								<?php } ?>
+
+                                <?php if (($rowaccess['dept'])==(("Business Information Technology")))  { ?>
+								<?php if (($outstanding_fee)=="0" && ($games)=="1" &&($hostel)=="1" && ($computerLab)=="1" && 
+                                ($examinationOffice)=="1" && ($admissionOffice)=="1" && ($library)=="1" && 
+                                ($dean_of_student)=="1" && ($registrar)=="1" && ($bit)=="1")  { ?>
+
+                                <span class="style2"><small> <a href="letter.php" target="_blank">Print Clearance Letter</a></small></span>	
+								
+								<?php } ?>	
+								<?php } ?>
+							</div>
                         </div>
                     </div>    
 					
@@ -248,47 +363,156 @@ $tot_fee=$row_fee['tot_fee'];
                 <td width="1237"><table border="0" align="center" class="table table-hover no-margins">
                   <thead>
                     <tr>
-                      <th width="30%"><div align="center"><span class="style1">Fee </span></div></th>
-					  <th width="30%"><div align="center"><span class="style1">Hostel</span></div></th>
-                      <th width="63%"><div align="center" class="style1">Games</div></th>
-					   <th width="63%"><div align="center" class="style1">Admission office</div></th>
+                      <th width="30%"><div align="center"><span class="style1">Admission Office</span></div></th>
+					  <th width="30%"><div align="center"><span class="style1">H.o.D - <?php echo $rowaccess['dept']?></span></div></th>
+                      <th width="30%"><div align="center" class="style1">Computer Laboratory</div></th>
+					   <th width="63%"><div align="center" class="style1">Games</div></th>
                     </tr>
                   </thead>
                   <tbody>
                    <tr>
 	
 				   
-				       <td>
-					  <?php if (($outstanding_fee)==(("0")))  { ?>
-					   <div align="center"><span class="label label-primary">Cleared</span> </div>
-					   <?php } else {?>
+                     <td>
+					   	 <?php if (($rowaccess['is_admissionOffice_approved'])==(("0")))  { ?>
 					   <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_admission.php">view remarks</a></div></p>
+					   <?php } else {?>
+					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_admission.php">view remarks</a></div></p>
  						<?php } ?>
-				     </td>
-						
-						
-				       <td>
-					   	 <?php if (($rowaccess['is_hostel_approved'])==(("0")))  { ?>
+					 </td>
+
+                     <td>
+                     <?php if (($rowaccess['dept'])==(("Mathematics")))  { ?>
+                       <?php if (($rowaccess['is_mathematics_approved'])==(("0")))  { ?>
 					   <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_mathematics.php">view remarks</a></div></p>
 					   <?php } else {?>
 					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_mathematics.php">view remarks</a></div></p>
+ 					 <?php } ?>
+                     <?php } ?>
+
+                     <?php if (($rowaccess['dept'])==(("Computer Science")))  { ?>
+                       <?php if (($rowaccess['is_computer_science_approved'])==(("0")))  { ?>
+					   <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_compscience.php">view remarks</a></div></p>
+					   <?php } else {?>
+					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_compscience.php">view remarks</a></div></p>
+ 					 <?php } ?>
+                     <?php } ?>
+
+                     <?php if (($rowaccess['dept'])==(("Business Administration")))  { ?>
+                       <?php if (($rowaccess['is_business_administration_approved'])==(("0")))  { ?>
+					   <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_ba.php">view remarks</a></div></p>
+					   <?php } else {?>
+					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_ba.php">view remarks</a></div></p>
+ 					 <?php } ?>
+                     <?php } ?>
+
+                     <?php if (($rowaccess['dept'])==(("Education")))  { ?>
+                       <?php if (($rowaccess['is_education_approved'])==(("0")))  { ?>
+					   <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_education.php">view remarks</a></div></p>
+					   <?php } else {?>
+					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_education.php">view remarks</a></div></p>
+ 					 <?php } ?>
+                     <?php } ?>
+
+                     <?php if (($rowaccess['dept'])==(("Business Information Technology")))  { ?>
+                       <?php if (($rowaccess['is_bit_approved'])==(("0")))  { ?>
+					   <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_bit.php">view remarks</a></div></p>
+					   <?php } else {?>
+					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_bit.php">view remarks</a></div></p>
+ 					 <?php } ?>
+                     <?php } ?>
+				     </td>
+                     
+                     <td>
+					   	 <?php if (($rowaccess['is_computerLab_approved'])==(("0")))  { ?>
+					   <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_complab.php">view remarks</a></div></p>
+					   <?php } else {?>
+					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_complab.php">view remarks</a></div></p>
  						<?php } ?>
 				     </td>
 						
                       <td>
 					   	 <?php if (($rowaccess['is_games_approved'])==(("0")))  { ?>
 					   <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_games.php">view remarks</a></div></p>
 					   <?php } else {?>
 					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_games.php">view remarks</a></div></p>
+ 						<?php } ?>
+				     </td>
+						
+						
+				    </tr>
+                  </tbody>
+                </table></td>
+              </tr>
+              <tr>
+                <td width="1237"><table border="0" align="center" class="table table-hover no-margins">
+                  <thead>
+                    <tr>
+                      <th width="30%"><div align="center"><span class="style1">KWUSD(Dean of Student)</span></div></th>
+					  <th width="30%"><div align="center"><span class="style1">Hostel</span></div></th>
+                      <th width="30%"><div align="center" class="style1">Examination Office</div></th>
+					   <th width="63%"><div align="center" class="style1">Library</div></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   <tr>
+	
+				   
+						
+                     <td>
+                       <?php if (($rowaccess['is_dean_of_student_approved'])==(("0")))  { ?>
+                        <div align="center"><span class="label label-warning">Pending</span> </div>
+                        <p><div align="center"><a href="mrk_dean.php">view remarks</a></div></p>
+					   <?php } else {?>
+					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_dean.php">view remarks</a></div></p>
+ 						<?php } ?>
+				     </td>
+
+                     <td>
+					   	 <?php if (($rowaccess['is_hostel_approved'])==(("0")))  { ?>
+					   <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_hostel.php">view remarks</a></div></p>
+					   <?php } else {?>
+					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_hostel.php">view remarks</a></div></p>
+ 						<?php } ?>
+				     </td> 
+                     
+                     <td>
+					   	 <?php if (($rowaccess['is_examinationOffice_approved'])==(("0")))  { ?>
+					   <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_examination.php">view remarks</a></div></p>
+					   <?php } else {?>
+					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_examination.php">view remarks</a></div></p>
  						<?php } ?>
 				     </td>
 						
 						
 						 <td>
-					   	 <?php if (($rowaccess['is_admissionOffice_approved'])==(("0")))  { ?>
+					   	 <?php if (($rowaccess['is_library_approved'])==(("0")))  { ?>
 					   <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_library.php">view remarks</a></div></p>
 					   <?php } else {?>
 					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_library.php">view remarks</a></div></p>
  						<?php } ?>
 					    </td>
 						
@@ -300,10 +524,10 @@ $tot_fee=$row_fee['tot_fee'];
                 <td width="1237"><table border="0" align="center" class="table table-hover no-margins">
                   <thead>
                     <tr>
-                      <th width="30%"><div align="center"><span class="style1">All H.O.D.s </span></div></th>
-					  <th width="30%"><div align="center"><span class="style1">Computer Laboratory</span></div></th>
-                      <th width="63%"><div align="center" class="style1">Examination Office</div></th>
-					   <th width="63%"><div align="center" class="style1">Library</div></th>
+                      <th width="30%"><div align="center"><span class="style1">Registrar Acardemics</span></div></th>
+					  <th width="30%"><div align="center"><span class="style1">Finance</span></div></th>
+                      <th width="30%"><div align="center"><span class="style1">//</span></div></th>
+					  <th width="63%"><div align="center"><span class="style1">//</span></div></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -311,38 +535,27 @@ $tot_fee=$row_fee['tot_fee'];
 	
 				   
 				       <td>
-                       <?php if (($rowaccess['is_hods_approved'])==(("0")))  { ?>
-                        <div align="center"><span class="label label-warning">Pending</span> </div>
+					   	 <?php if (($rowaccess['is_registrar_approved'])==(("0")))  { ?>
+					   <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_registrar.php">view remarks</a></div></p>
 					   <?php } else {?>
 					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_registrar.php">view remarks</a></div></p>
  						<?php } ?>
 				     </td>
-						
-						
-				       <td>
-					   	 <?php if (($rowaccess['is_computerLab_approved'])==(("0")))  { ?>
-					   <div align="center"><span class="label label-warning">Pending</span> </div>
+
+                     <td>
+					   	 <?php if (($outstanding_fee)=="0")  { ?>
+                       <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <p><div align="center"><a href="mrk_finance.php">view remarks</a></div></p>
 					   <?php } else {?>
-					   <div align="center"><span class="label label-primary">Cleared</span> </div>
+                       <div align="center"><span class="label label-warning">Pending</span> </div>
+                       <p><div align="center"><a href="mrk_finance.php">view remarks</a></div></p>
  						<?php } ?>
 				     </td>
+
+                     
 						
-                      <td>
-					   	 <?php if (($rowaccess['is_examinationOffice_approved'])==(("0")))  { ?>
-					   <div align="center"><span class="label label-warning">Pending</span> </div>
-					   <?php } else {?>
-					   <div align="center"><span class="label label-primary">Cleared</span> </div>
- 						<?php } ?>
-				     </td>
-						
-						
-						 <td>
-					   	 <?php if (($rowaccess['is_library_approved'])==(("0")))  { ?>
-					   <div align="center"><span class="label label-warning">Pending</span> </div>
-					   <?php } else {?>
-					   <div align="center"><span class="label label-primary">Cleared</span> </div>
- 						<?php } ?>
-					    </td>
 						
 				    </tr>
                   </tbody>

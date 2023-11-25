@@ -16,7 +16,7 @@ $current_date = date('Y-m-d');
 	
 $sql = "select * from officers where username='$username'"; 
 $result = $conn->query($sql);
-$row= mysqli_fetch_array($result);
+$row1= mysqli_fetch_array($result);
 
 ?>
 <!DOCTYPE html>
@@ -117,9 +117,9 @@ else {return false;
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../<?php echo $row['photo'];  ?>" alt="User Image" width="220" height="192" class="img-circle elevation-2">        </div>
+          <img src="../<?php echo $row1['photo'];  ?>" alt="User Image" width="220" height="192" class="img-circle elevation-2">        </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $row['fullname'];  ?></a>
+          <a href="#" class="d-block"><?php echo $row1['fullname'];  ?></a>
         </div>
       </div>
 
@@ -184,22 +184,17 @@ else {return false;
             <tr>
               <td width="1090" height="184"><div class="card">
                 <div class="card-header">
-                  <h4>Student Record - <?php echo $row['designation'];?> Officer - <small><i>Please clear students on your respective department</i></small></h4>
+                  <h4>Student Record - <?php echo $row1['designation'];?> Officer</h4>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                   <table width="85%" align="center" class="table table-bordered table-striped" id="example1">
                     <thead>
-                    <th width="10%"><div align="center">Fullname</div></th>
+                        <th width="10%"><div align="center">Fullname</div></th>
 							          <th width="7%"><div align="center">Photo</div></th>
-                        <th width="5%"><div align="center">Matric No</div></th>
-                        <th width="5%"><div align="center">Hostel Status</div></th>
-                        <th width="6%"><div align="center">Games Status</div></th>
-						           <th width="5%"><div align="center">Library Status</div></th>
-                       <th width="5%"><div align="center">Admission Status</div></th>
-                       <th width="5%"><div align="center">All H.O.D.s Status</div></th>
-                       <th width="5%"><div align="center">Computer Laboratory Status</div></th>
-                       <th width="5%"><div align="center">Examination Office Status</div></th>
+                        <th width="5%"><div align="center">Reg No</div></th>
+                        <th width="5%"><div align="center"><?php echo $row1['designation'];?> Status</div></th>
+                        <th width="5%"><div align="center">Remarks</div></th>
                         
 				     						    </tr>
                     </thead>
@@ -215,7 +210,10 @@ else {return false;
                         <td height="104"><div align="center"><?php echo $row['fullname']; ?> </div></td>
 					 <td><div align="center"><span class="controls"><img src="../<?php echo $row['photo'];?>"  width="91" height="73" border="2"/></span></div></td>
                         <td><div align="center"><?php echo $row['matric_no']; ?></div></td>
+
+
                         <td>
+<?php if (($row1['designation'])==(('Hostel'))) {?>
 						<?php if (($row['is_hostel_approved'])==(('1')))  { ?>
 						<div align="center"><span class="badge badge-success">Cleared</span></div>
 							 <?php } else {?>
@@ -223,61 +221,205 @@ else {return false;
 </div>
 
 <?php } ?>
-</td>                        
-<td>
-						<?php if (($row['is_games_approved'])==(('1')))  { ?>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Games'))) {?>
+  <?php if (($row['is_games_approved'])==(('1')))  { ?>
 						<div align="center"><span class="badge badge-success">Cleared</span></div>
 							 <?php } else {?>
 <div align="center"><a href="clear_games.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
 </div>
 
 <?php } ?>
-</td>                   
-<td>
-						<?php if (($row['is_library_approved'])==(('1')))  { ?>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Library'))) {?>
+  <?php if (($row['is_library_approved'])==(('1')))  { ?>
 						<div align="center"><span class="badge badge-success">Cleared</span></div>
 							 <?php } else {?>
 <div align="center"><a href="clear_library.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
 </div>
 
 <?php } ?>
-</td>
-<td>
-						<?php if (($row['is_admissionOffice_approved'])==(('1')))  { ?>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Admission_office'))) {?>
+  <?php if (($row['is_admissionOffice_approved'])==(('1')))  { ?>
 						<div align="center"><span class="badge badge-success">Cleared</span></div>
 							 <?php } else {?>
 <div align="center"><a href="clear_admissionOffice.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
 </div>
 
 <?php } ?>
-</td>
-<td>
-						<?php if (($row['is_hods_approved'])==(('1')))  { ?>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('H.O.D.s'))) {?>
+  <?php if (($row['is_hods_approved'])==(('1')))  { ?>
 						<div align="center"><span class="badge badge-success">Cleared</span></div>
 							 <?php } else {?>
 <div align="center"><a href="clear_hods.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
 </div>
 
 <?php } ?>
-</td>
-<td>
-						<?php if (($row['is_computerLab_approved'])==(('1')))  { ?>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Computer_laboratory'))) {?>
+  <?php if (($row['is_computerLab_approved'])==(('1')))  { ?>
 						<div align="center"><span class="badge badge-success">Cleared</span></div>
 							 <?php } else {?>
 <div align="center"><a href="clear_computerLab.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
 </div>
 
 <?php } ?>
-</td>
-<td>
-						<?php if (($row['is_examinationOffice_approved'])==(('1')))  { ?>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Examination_office'))) {?>
+  <?php if (($row['is_examinationOffice_approved'])==(('1')))  { ?>
 						<div align="center"><span class="badge badge-success">Cleared</span></div>
 							 <?php } else {?>
 <div align="center"><a href="clear_examinationOffice.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
 </div>
 
 <?php } ?>
-</td>                   
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Dean_of_Student'))) {?>
+  <?php if (($row['is_dean_of_student_approved'])==(('1')))  { ?>
+						<div align="center"><span class="badge badge-success">Cleared</span></div>
+							 <?php } else {?>
+<div align="center"><a href="clear_dean_of_student.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
+</div>
+
+<?php } ?>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Registrar_Acardemics'))) {?>
+  <?php if (($row['is_registrar_approved'])==(('1')))  { ?>
+						<div align="center"><span class="badge badge-success">Cleared</span></div>
+							 <?php } else {?>
+<div align="center"><a href="clear_registrar.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
+</div>
+
+<?php } ?>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Finance'))) {?>
+		       <div align="center"><a href="outstandingfee.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-eye fa-fw"></i> View fee status</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('H.O.D-Mathematics'))) {?>
+  <?php if (($row['is_mathematics_approved'])==(('1')))  { ?>
+						<div align="center"><span class="badge badge-success">Cleared</span></div>
+							 <?php } else {?>
+<div align="center"><a href="clear_mathematics.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
+</div>
+
+<?php } ?>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('H.O.D-Computer_Science'))) {?>
+  <?php if (($row['is_computer_science_approved'])==(('1')))  { ?>
+						<div align="center"><span class="badge badge-success">Cleared</span></div>
+							 <?php } else {?>
+<div align="center"><a href="clear_computer_science.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
+</div>
+
+<?php } ?>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('H.O.D-Business_Administration'))) {?>
+  <?php if (($row['is_business_administration_approved'])==(('1')))  { ?>
+						<div align="center"><span class="badge badge-success">Cleared</span></div>
+							 <?php } else {?>
+<div align="center"><a href="clear_business_administration.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
+</div>
+
+<?php } ?>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('H.O.D-Education'))) {?>
+  <?php if (($row['is_education_approved'])==(('1')))  { ?>
+						<div align="center"><span class="badge badge-success">Cleared</span></div>
+							 <?php } else {?>
+<div align="center"><a href="clear_education.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
+</div>
+
+<?php } ?>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('H.O.D-Business_Information_Technology'))) {?>
+  <?php if (($row['is_bit_approved'])==(('1')))  { ?>
+						<div align="center"><span class="badge badge-success">Cleared</span></div>
+							 <?php } else {?>
+<div align="center"><a href="clear_bit.php?id=<?php echo $row['ID'];?>" onClick="return clear_student('<?php echo $row['matric_no']; ?>');"><i class="fa fa-check" title="Click to Clear Student"> <span class="badge badge-warning">Pending</span></i> </a>
+</div>
+
+<?php } ?>
+<?php } ?>
+
+</td>
+<td>
+<?php if (($row1['designation'])==(('Hostel'))) {?>
+<div align="center"><a href="remarks_hostel.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Games'))) {?>
+<div align="center"><a href="remarks_games.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Library'))) {?>
+<div align="center"><a href="remarks_library.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Admission_office'))) {?>
+<div align="center"><a href="remarks_admission.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('H.O.D.s'))) {?>
+<div align="center"><a href="remarks_hods.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Computer_laboratory'))) {?>
+<div align="center"><a href="remarks_computerlab.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Examination_office'))) {?>
+<div align="center"><a href="remarks_examination.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Dean_of_Student'))) {?>
+<div align="center"><a href="remarks_dean.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Registrar_Acardemics'))) {?>
+<div align="center"><a href="remarks_registrar.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('Finance'))) {?>
+<div align="center"><a href="remarks_finance.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('H.O.D-Mathematics'))) {?>
+<div align="center"><a href="remarks_mathematics.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('H.O.D-Computer_Science'))) {?>
+<div align="center"><a href="remarks_computer_science.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('H.O.D-Business_Administration'))) {?>
+<div align="center"><a href="remarks_business_administration.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('H.O.D-Education'))) {?>
+<div align="center"><a href="remarks_education.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+
+<?php if (($row1['designation'])==(('H.O.D-Business_Information_Technology'))) {?>
+<div align="center"><a href="remarks_bit.php?ID=<?php echo $row['ID'];?>"><i class="fas fa-pen fa-fw"></i> Remarks</a></div>
+<?php } ?>
+</td> 
+                                                           
                 
 					
                     </tr>
@@ -315,7 +457,7 @@ else {return false;
     <div class="float-right d-none d-sm-block">
       
     </div>
- <?php  include('../footer.php');   ?>
+
   </footer>
 
   <!-- Control Sidebar -->
